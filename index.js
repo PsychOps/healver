@@ -35,7 +35,7 @@ async function main() {
         client.user.setPresence( { activity: { type: 'WATCHING', name: 'my prefix (;)' }, status: 'dnd' } )
         console.log('I am ready!');
     });
-    client.on('message', message => {
+    client.on('messageCreate', message => {
         if (!message.content.startsWith(prefix) || message.author.bot) return;
         const args = message.content.slice(prefix.length).trim().split(/ +/);
         const commandName = args.shift().toLowerCase();
