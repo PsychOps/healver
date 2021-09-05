@@ -15,7 +15,7 @@ module.exports = {
     async execute(message, args, client) {
         let roleid = util.roleMentionToId(args[0]);
 
-        if (!roleid) return sendUsage();
+        if (!roleid) return message.reply('You need to specify a role ID.');
 
         let role = message.guild.roles.resolve(roleid);
         if (!role) return await message.channel.send('This is not a valid role ID.');
