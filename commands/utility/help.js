@@ -36,16 +36,23 @@ module.exports = {
                 return message.reply('that\'s not a valid command!');
             }
 
-            data.push(`**Name:** ${command.name} \n`);
+            //data.push(`**Name:** ${command.name} \n`);
 
             if (command.aliases) data.push(`**Aliases:** ${command.aliases.join(', ')} \n`);
             if (command.description) data.push(`**Description:** ${command.description} \n`);
-            if (command.usage) data.push(`**Usage:** ${prefix}${command.name} ${command.usage} \n`);
+            if (command.usage) data.push(`**Usage:** \`${prefix}${command.name} ${command.usage} \` \n`);
             if (command.permissions) data.push(`**Required permissions:** ${command.permissions} \n`)
 
             if (command.cooldown) data.push(`**Cooldown:** ${command.cooldown || 0} second(s)`);
 
-            message.channel.send({ content: data.toString().replace(/[,]/g, '') }, { split: true });
+            const embed = new Discord.MessageEmbed()
+                .setTitle(`Help for ${command.name} | Prefix ${prefix}`)
+                .setDescription(data.toString().replace(/[,]/g, ''))
+                .setTimestamp()
+                .setFooter(`Command executed by ${message.author.tag}`)
+                .setColor(color.blue)
+
+            message.channel.send({ embeds: [embed] }, { split: true });
         }
     },
 };
