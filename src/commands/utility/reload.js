@@ -25,8 +25,8 @@ module.exports = {
             return message.channel.send(`There is no command with name or alias \`${commandName}\`, ${message.author}!`);
         }
 
-        const commandFolders = fs.readdirSync('./commands');
-        const folderName = commandFolders.find(folder => fs.readdirSync(`./commands/${folder}`).includes(`${command.name}.js`));
+        const commandFolders = fs.readdirSync('./src/commands');
+        const folderName = commandFolders.find(folder => fs.readdirSync(`./src/commands/${folder}`).includes(`${command.name}.js`));
 
         delete require.cache[require.resolve(`../${folderName}/${command.name}.js`)];
 

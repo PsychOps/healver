@@ -16,17 +16,17 @@ async function main() {
     client.commands = new Discord.Collection();
     const prefix = config.prefix
 
-    const commandFolders = fs.readdirSync('./commands');
+    const commandFolders = fs.readdirSync('./src/commands');
     for (const folder of commandFolders) {
-        const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));
+        const commandFiles = fs.readdirSync(`./src/commands/${folder}`).filter(file => file.endsWith('.js'));
         for (const file of commandFiles) {
-            const command = require(`./commands/${folder}/${file}`);
+            const command = require(`./src/commands/${folder}/${file}`);
             client.commands.set(command.name, command);
         }
     }
-    const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+    const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
     for (const file of commandFiles) {
-        const command = require(`./commands/${file}`);
+        const command = require(`./src/commands/${file}`);
         // set a new item in the Collection
         // with the key as the command name and the value as the exported module
         client.commands.set(command.name, command);
