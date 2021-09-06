@@ -9,6 +9,6 @@ module.exports = {
 
 
     async execute(message, args, client) {
-        await message.reply(`I am not public, meaning you can't invite me at the moment, sorry for the inconvenience!`);
+        await message.reply(`You can invite me [here](https://discord.com/api/oauth2/authorize?client_id=884515940967006309&permissions=103079603265&scope=bot)`);
     },
 };
