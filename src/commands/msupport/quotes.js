@@ -7,7 +7,7 @@ module.exports = {
 
     aliases: ['quote'],
 
-    description: 'Invite me to your server(s)!',
+    description: 'Get a random quote',
 
     cooldown: 5,
 
