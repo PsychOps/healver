@@ -12,7 +12,7 @@ module.exports = {
         if (!client.application.owner)
             await client.application.fetch()
 
-        if (client.application.owner.id !== message.author.id && message.author.id !== "104933285506908160") {
+        if (client.application.owner.id !== message.author.id) {
             return message.reply('This command is restricted to my developers.')
         }
 
