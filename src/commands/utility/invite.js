@@ -9,6 +9,6 @@ module.exports = {
 
 
     async execute(message, args, client) {
-        await message.reply(`You can invite me [here](https://discord.com/api/oauth2/authorize?client_id=884515940967006309&permissions=103079603265&scope=bot)`);
+        await message.reply(`You can invite me [here](${util.links.invite})`);
     },
 };
