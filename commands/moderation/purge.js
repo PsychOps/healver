@@ -13,10 +13,10 @@ module.exports = {
     permissions: 'MANAGE_MESSAGES',
 
     async execute(message, args, client) {
-        if (isNaN(+args))  return message.reply("Invalid arguments. Usage: ;purge <limit:int>")
-        args = +args
+        await message.delete()
+        if (isNaN(args))  return message.reply("Invalid arguments. Usage: ;purge <limit:int>")
         /*<editor-fold desc="​">*/
-        if (+args === 1) return message.reply(':no_entry: | Just use delete, you lazy bastard.');
+        if (args === 1) return message.reply(':no_entry: | Just use delete, you lazy bastard.');
         //</editor-fold>
         if (args > 1000) return message.reply("You can't purge more than 1000 messages.")
         if (args < 1) return message.reply(":warning: | You can't purge less than 1 message.");
