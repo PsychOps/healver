@@ -14,6 +14,7 @@ async function main() {
     const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS], allowedMentions: { parse: [] } });
 
     client.commands = new Discord.Collection();
+    client.cooldowns = new Discord.Collection();
     const prefix = config.prefix
 
     const commandFolders = fs.readdirSync('./src/commands');
@@ -35,6 +36,7 @@ async function main() {
         client.user.setPresence( { activity: { type: 'WATCHING', name: 'my prefix (;)' }, status: 'dnd' } )
         console.log('I am ready!');
     });
+
     client.on('messageCreate', message => {
         if (!message.content.startsWith(prefix) || message.author.bot) return;
         const args = message.content.slice(prefix.length).trim().split(/ +/);
@@ -53,6 +55,30 @@ async function main() {
         if (command.args && !args.length) {
             return message.reply(`Please specify arguments for this command - \`${command.usage.toString()}\``);
         }
+
+        const { cooldowns } = client;
+
+        if (!cooldowns.has(command.name)) {
+            cooldowns.set(command.name, new Discord.Collection());
+        }
+
+        const now = Date.now();
+        const timestamps = cooldowns.get(command.name);
+        const cooldownAmount = (command.cooldown || 3) * 1000;
+
+        if (timestamps.has(message.author.id)) {
+            const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+
+            if (now < expirationTime) {
+                const timeLeft = (expirationTime - now) / 1000;
+                return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`);
+            }
+
+            timestamps.set(message.author.id, now);
+            setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+
+        }
+
         try {
             command.execute(message, args, client, database);
         } catch (error) {
