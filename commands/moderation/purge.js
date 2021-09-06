@@ -10,6 +10,8 @@ module.exports = {
 
     usage: '<messagecount>',
 
+    permissions: 'MANAGE_MESSAGES',
+
     async execute(message, args, client) {
         if (isNaN(+args))  return message.reply("Invalid arguments. Usage: ;purge <limit:int>")
         args = +args
