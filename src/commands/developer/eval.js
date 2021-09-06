@@ -4,7 +4,7 @@ module.exports = {
 
     aliases: ['evaluate'],
 
-    description: 'Evaluate a piece of JavaScript code **DANGEROUS COMMAND**',
+    description: 'Evaluate a piece of JavaScript code\n**Warning:** __Dangerous__',
 
 
     async execute(message, args, client) {
