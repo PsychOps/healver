@@ -80,7 +80,7 @@ async function main() {
         }
 
         try {
-            command.execute(message, args, client, database);
+            command.execute(message, args, client); // Add ", database" behind client when using databases
         } catch (error) {
             console.error(error);
             message.reply(`there was an error trying to execute that command!\n\`${error}\``);
