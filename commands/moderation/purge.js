@@ -13,14 +13,13 @@ module.exports = {
     permissions: 'MANAGE_MESSAGES',
 
     async execute(message, args, client) {
-        await message.delete()
-        if (isNaN(args))  return message.reply("Invalid arguments. Usage: ;purge <limit:int>")
+        if (isNaN(args)) return message.reply("Invalid arguments. Usage: ;purge <limit:int>")
         /*<editor-fold desc="​">*/
-        if (args === 1) return message.reply(':no_entry: | Just use delete, you lazy bastard.');
         //</editor-fold>
-        if (args > 1000) return message.reply("You can't purge more than 1000 messages.")
+        if (args > 100) return message.reply("You can't purge more than 100 messages.")
         if (args < 1) return message.reply(":warning: | You can't purge less than 1 message.");
-        args++;
+        await message.delete()
+        //args++;
         const channel = message.channel
         let test = await channel.messages.fetch({ limit: args.toString()})
 
@@ -30,11 +29,12 @@ module.exports = {
         }
 
         const params = new URLSearchParams();
-        params.append('content', log.join("\n"));
+        params.append('content', `If there are empty messages, they may have been embeds or images that we are unable to display in these logs. We apologize for the inconvience. \n\n` + log.join("\n"));
         const response = await fetch('https://api.mclo.gs/1/log', {method: 'POST', body: params});
         const data = await response.json();
         await message.channel.bulkDelete(args.toString())
         //await message.channel.bulkDelete(args[1].join(''))
-        await message.author.send(`Success!\nLogs: <${data.url}>`);
+        await message.channel.send(`Success! A link with the purged data has been messaged to you.`);
+        await message.author.send(`Logs: <${data.url}>`)
     }
 };
