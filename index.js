@@ -37,6 +37,20 @@ async function main() {
         console.log('I am ready!');
     });
 
+    client.on('guildMemberAdd', member => {
+        let channel = member.guild.channels.cache.find(c => c.name === "hl-logs" && c.type !== "GUILD_VOICE" && c.type !== "GUILD_STAGE_VOICE" && c.type !== "GUILD_STORE" && c.type !== "GUILD_CATEGORY");
+        if(channel){
+            channel.send(`Member ${member} (${member.id}) joined`)
+        }
+    });
+
+    client.on('guildMemberRemove', member => {
+        let channel = member.guild.channels.cache.find(c => c.name === "hl-logs" && c.type !== "GUILD_VOICE" && c.type !== "GUILD_STAGE_VOICE" && c.type !== "GUILD_STORE" && c.type !== "GUILD_CATEGORY");
+        if(channel){
+            channel.send(`Member ${member} (${member.id}) left`)
+        }
+    });
+
     client.on('messageCreate', message => {
         if (!message.content.startsWith(prefix) || message.author.bot) return;
         const args = message.content.slice(prefix.length).trim().split(/ +/);
