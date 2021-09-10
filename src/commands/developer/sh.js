@@ -5,6 +5,10 @@ module.exports = {
 
     aliases: ['shell'],
 
+    args: true,
+
+    usage: '<args>',
+
     description: 'Run a shell command **DANGEROUS COMMAND**',
 
 
