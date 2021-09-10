@@ -1,4 +1,5 @@
 const util = require('../../util');
+const Discord = require("discord.js");
 
 module.exports = {
     name: 'invite',
@@ -9,6 +10,10 @@ module.exports = {
 
 
     async execute(message, args, client) {
-        await message.reply(`You can invite me [here](${util.links.invite})`);
+        const embed = new Discord.MessageEmbed()
+            .setDescription(`Healver is a Modraxis Development project. [Invite it here!](${util.links.invite})`)
+            .setColor(util.color.blue)
+
+        await message.reply({ embeds: [embed] });
     },
 };
