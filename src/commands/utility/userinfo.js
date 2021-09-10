@@ -28,7 +28,7 @@ module.exports = {
         }
 
         let generic = '';
-        generic += user.bot ? `**Username:** ${user.username} <:bot:881631704199077898> \n` : `**Username:** ${user.username} \n`;
+        generic += user.bot ? `**Username:** ${user.tag} <:bot:881631704199077898> \n` : `**Username:** ${user.tag} \n`;
         generic += `**User ID:** ${user.id} \n`
         generic += `**Created:** <t:${Math.round(user.createdAt.getTime() / 1000)}:R>`
 
