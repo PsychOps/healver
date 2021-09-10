@@ -11,7 +11,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
         embed.setTitle(`About ${client.user.username}`)
         embed.setColor(color.blue)
-        embed.setDescription(`${client.user.username} is a multifunctional bot developed and maintained by ${(await client.users.fetch('843866750131109909')).tag} in co-operation with ${(await client.users.fetch('282825580141871104')).tag} and ${(await client.users.fetch('104933285506908160')).tag} to provide users with modules such as utility, moderation and mental support. ${client.user.username} is a product by [Modraxis Development](https://github.com/Modraxis). The code can be found [here on github](https://github.com/Modraxis/Healver) and is licensed under the GPL 3.0 license.`)
+        embed.setDescription(`${client.user.username} is a multifunctional bot developed and maintained by ${(await client.users.fetch('843866750131109909')).tag} in co-operation with ${(await client.users.fetch('282825580141871104')).tag} and ${(await client.users.fetch('104933285506908160')).tag} to provide users with modules such as utility, moderation and mental support. ${client.user.username} is a product by [Modraxis Development](https://github.com/Modraxis). The code can be found [here on github](https://github.com/Modraxis/Healver) and is licensed under the GPL 3.0 license. For inquiries, contact **modraxisorg@gmail.com**.`)
 
         let stats = '';
         stats += `**Users:** ${client.users.cache.size} \n`
