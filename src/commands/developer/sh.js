@@ -25,7 +25,7 @@ module.exports = {
         let cmd = args.join(' ')
         let result
         let flag = ''
-        process = exec(cmd, async (error, stdout, stderr) => {
+        const child = exec(cmd, async (error, stdout, stderr) => {
             if (error) {
                 result += "[ERROR]"
                 result += error.message;
@@ -39,9 +39,11 @@ module.exports = {
             flag += "[STDOUT]"
             result = stdout;
             await response.edit(`Output${" " + flag}: \`\`\`${result}\`\`\``);
+            clearTimeout(timeout);
         });
-        setTimeout(() => {
-            process.kill("SIGTERM")
+
+        let timeout = setTimeout(() => {
+            child.kill("SIGTERM")
             response.edit("Command timed out.")
         }, 60*1000)
 
