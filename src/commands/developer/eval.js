@@ -25,7 +25,8 @@ module.exports = {
             result = e.toString()
         }
 
-        await response.edit(`Output: \`\`\`${result}\`\`\``);
+        await response.edit(result)
+        //await response.edit(`Output: \`\`\`${result}\`\`\``);
 
     },
 };
