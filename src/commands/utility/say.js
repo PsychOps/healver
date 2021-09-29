@@ -18,7 +18,8 @@ module.exports = {
             .setFooter(`Command executed by ${message.author.tag}`)
             .setTimestamp()
             .setColor(color.green)
-        await message.channel.send( { embeds: [embed] } )
+        await message.reply(args.join(''))
+        //await message.channel.send( { embeds: [embed] } )
         try {
             await message.delete()
         } catch { }
