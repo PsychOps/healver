@@ -13,7 +13,7 @@ module.exports = {
     permissions: 'MANAGE_MESSAGES',
 
     async execute(message, args, client) {
-        if (!message.guild.me.hasPermission("MANAGE_MESSAGES") {
+        if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
             return message.reply(`I could not purge chat, please make sure i have \`Manage Messages\` permissions.`)
         }
         if (isNaN(args)) return message.reply("Invalid arguments. Usage: ;purge <limit:int>")
